@@ -7,8 +7,15 @@
 </head>
 <body>
     <h1> Display image</h1>
-    <img id="displayedImage" src="" alt="Displayed Image">
+    # on crée une balise html pour afficher une image qu'on appellera en javascript avec son id : displayedImage
+    # Elle n'a pas encore de source
+    <img id="displayedImage" src="" alt="Displayed Image"> 
+
+    # On laisse l'utilisateur sélectionner un fichier qu'on appellera avec son id : imageInput
+    # Losque l'utilisateur sélectionne (onchange=) un fichier , cela appelle la fonction javascript displayImage()
     <input type="file" id="imageInput" onchange="displayImage()">
+
+    # On inclut du code javascript dans la page HTML. On peut appeler les fonctions de notre code javascript à d'autres endroit du code.
     <script src="function.js"></script>
 </body>
 </html>
