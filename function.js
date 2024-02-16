@@ -1,4 +1,3 @@
-function testImage() {
     
     //////////////////////////////////
 
@@ -16,19 +15,13 @@ function testImage() {
     // La variable file est le premier fichier donné par l'utilisateur (il ne peut en donner qu'un).
     var file = input.files[0];
 
-    //////////////////////////////////
+function testImage() {
 
-    // Size function //
+    sizeImage(18)
 
-    //////////////////////////////////
-
-
-
-    //////////////////////////////////
+    /////////////////////////////////////////////////////////
 
     // Display image //
-
-    //////////////////////////////////
 
     // On crée une nouvelle instance de l'objet FileReader qui est une interface JS qui permet à l'html de lire le contenu d'un fichier stocké sur l'ordi de l'utilisateur.
     var reader = new FileReader();
@@ -41,5 +34,11 @@ function testImage() {
 
     // Le FileReader lit la file (document déposé par l'utilisateur)
     reader.readAsDataURL(file);
+
+}
+
+function sizeImage(number) {
+
+    console.log(18)
 
 }
