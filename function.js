@@ -1,4 +1,11 @@
-function displayImage() {
+function testImage() {
+    
+    //////////////////////////////////
+
+    // Get and store png info //
+
+    //////////////////////////////////
+
     // On crée une variable input où on va chercher dans le html (document), l'élément avec l'id imageInput => le file que l'utilisateur upload.
     // On utilisera donc input pour utiliser cette file.
     var input = document.getElementById('imageInput');
@@ -8,6 +15,20 @@ function displayImage() {
 
     // La variable file est le premier fichier donné par l'utilisateur (il ne peut en donner qu'un).
     var file = input.files[0];
+
+    //////////////////////////////////
+
+    // Size function //
+
+    //////////////////////////////////
+
+
+
+    //////////////////////////////////
+
+    // Display image //
+
+    //////////////////////////////////
 
     // On crée une nouvelle instance de l'objet FileReader qui est une interface JS qui permet à l'html de lire le contenu d'un fichier stocké sur l'ordi de l'utilisateur.
     var reader = new FileReader();
@@ -20,4 +41,5 @@ function displayImage() {
 
     // Le FileReader lit la file (document déposé par l'utilisateur)
     reader.readAsDataURL(file);
+
 }
