@@ -1,10 +1,13 @@
-    
+var file, data;
+var circleRadius = 400; // threshold chose arbitrary
+
+
 function testImage(){
     var input = document.getElementById('imageInput');
     var image = document.getElementById('displayedImage');
 
     if (input.files && input.files[0]) {
-        var file = input.files[0];
+        file = input.files[0];
 
         displayImage(file);
     }
@@ -14,7 +17,7 @@ function displayImage(file){
     var reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = function (e) {
-        var data = e.target.result;
+        data = e.target.result;
         document.getElementById('displayedImage').src = data;
         displayImageDimensions(file);
     }
@@ -28,8 +31,87 @@ function displayImageDimensions (file){
         var height = img.height;
         if (width != 512 || height != 512){
             alert('Image dimensions should be 512*512')
+            return;
         }
+        pixelCircle(img)
+    }
+}
+
+function pixelCircle(img){
+    var canvas = document.createElement('canvas');
+    var ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0, img.width, img.height);
+    var imageData = ctx.getImageData(0, 0, img.width, img.height);
+    data = imageData.data;
+
+    var centerX = img.width / 2;
+    var centerY = img.height / 2;
+
+    for (let i = 0; i<data.length; i+=4){
+
+        var nonTrasparentpixel = data[i+3] !== 0;
+        
+        var x = (i/4) % img.width;
+        var y = Math.floor((i/4)/img.width);
+        var distanceToCenter = Math.sqrt(Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2));
+
+        if (nonTrasparentpixel && distanceToCenter > circleRadius){
+            alert("Non transparent pixels outside a " + circleRadius + " pixels radius Circle")
+            document.getElementById("displayedAvatar").src = "";
+            return; 
+            // Add a user input to let him decide if he wants us to not use the pixel ? => make it transparent.
+        }
+    }
+    
+    colorMoodDetection();
+
+}
+
+function colorMoodDetection(){
+
+    var totalBrightness = 0;
+    var totalSaturation = 0;
+
+    for (let i=0; i < data.length; i+=4){
+
+        red = data[i];
+        green = data[i+1];
+        blue = data[i+2];
+
+        // Convert RGB to HSL
+        var max = Math.max(red, green, blue);
+        var min = Math.min(red, green, blue);
+        var lightness = max / 255; //http://voc500.be/textes/coulumsat.asp#:~:text=Par%20exemple%2C%20la%20luminosit%C3%A9%20du,255%2F255%20%3D%20100%20%25.
+
+        //Saturation
+        var saturation = 0;
+        if (lightness > 0 && lightness < 1){
+        saturation = (max - min) / max 
+        }
+
+        totalBrightness += lightness;
+        totalSaturation += saturation;
+
     }
 
     
+    averageBrightness = totalBrightness / (data.length/4);
+    averageSaturation = totalSaturation / (data.length/4);
+
+    if (averageBrightness < 0.05) {
+        alert("Your image is too sad for a badge ... Try something more colorful !");
+        document.getElementById("displayedAvatar").src = "";
+        return;
+    }
+
+    displayAvatar()
+}
+
+function displayAvatar(){
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function(e){
+        var data = e.target.result;
+        document.getElementById("displayedAvatar").src = data;
+    }
 }

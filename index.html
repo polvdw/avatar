@@ -3,19 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avatar</title>
+    <title>Create your Avatar</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(to right, #87CEEB, #ADD8E6);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        h2 {
+            color: #fff;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+
+        img {
+            max-width: 50%;
+            height: auto;
+            border: 1px solid #ccc;
+            margin: 0 10px;
+        }
+
+        input {
+            padding: 10px;
+            background: linear-gradient(to bottom, #87CEEB, #ADD8E6);
+            border: 1px solid #4682B4;
+            border-radius: 4px;
+            cursor: pointer;
+            color: #fff;
+            margin-bottom: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        input:hover {
+            background: linear-gradient(to bottom, #5F9EA0, #4682B4);
+        }
+    </style>
 </head>
 <body>
-    <h1> Display image</h1>
-    <!-- on crée une balise html pour afficher une image qu'on appellera en javascript avec son id : displayedImage
-     Elle n'a pas encore de source -->
-    <img id="displayedImage" src="" alt="Displayed Image"> 
+    <h2>Create your Avatar</h2>
 
-    <!--  On laisse l'utilisateur sélectionner un fichier qu'on appellera avec son id : imageInput
-     Losque l'utilisateur sélectionne (onchange=) un fichier , cela appelle la fonction javascript displayImage() -->
-    <input type="file" id="imageInput" onchange="testImage()">
+    <section>
+        <input type="file" id="imageInput" onchange="testImage()" placeholder="Choose an image...">
+    </section>
 
-    <!-- On inclut du code javascript dans la page HTML. On peut appeler les fonctions de notre code javascript à d'autres endroit du code. -->
+    <section>
+        <div>
+            <h1>Original Image</h1>
+            <img id="displayedImage" src="" alt="Displayed Image">
+        </div>
+        <div>
+            <h1>Created Avatar</h1>
+            <img id="displayedAvatar" src="" alt="Displayed Avatar">
+        </div>
+    </section>
+
     <script src="function.js"></script>
 </body>
 </html>
