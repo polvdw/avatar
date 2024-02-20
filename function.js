@@ -112,6 +112,24 @@ function displayAvatar(){
     reader.readAsDataURL(file);
     reader.onload = function(e){
         var data = e.target.result;
-        document.getElementById("displayedAvatar").src = data;
+        var img = new Image();
+        img.src = data;
+
+        img.onload = function(){
+            var canvas = document.createElement('canvas');
+            var ctx = canvas.getContext('2d');
+            
+            canvas.width = circleRadius * 2;
+            canvas.height = circleRadius * 2;
+            
+            ctx.beginPath();
+            ctx.arc(circleRadius, circleRadius,circleRadius,0, 2*Math.PI);
+            ctx.closePath();
+            ctx.clip();
+
+            ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, circleRadius * 2, circleRadius * 2);
+
+            document.getElementById("displayedAvatar").src = canvas.toDataURL();
+        }
     }
 }

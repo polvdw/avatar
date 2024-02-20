@@ -26,9 +26,10 @@
         section {
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start; /* Ajustement ici pour aligner en haut */
             text-align: center;
             width: 100%;
+            margin-bottom: 20px;
         }
 
         h1 {
@@ -70,13 +71,13 @@
     </section>
 
     <section>
-        <div>
+        <div style="margin-right: 140px;">
             <h1>Original Image</h1>
-            <img id="displayedImage" src="" alt="Displayed Image">
+            <img id="displayedImage" src="">
         </div>
-        <div>
+        <div style="align-self: flex-start;"> <!-- Ajustement ici pour aligner en haut -->
             <h1>Created Avatar</h1>
-            <img id="displayedAvatar" src="" alt="Displayed Avatar">
+            <img id="displayedAvatar" src="">
         </div>
     </section>
 
