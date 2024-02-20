@@ -1,5 +1,5 @@
 var file, data;
-var circleRadius = 400; // threshold chose arbitrary
+var circleRadius = 256; // threshold chosen arbitrary
 
 
 function testImage(){
@@ -30,10 +30,9 @@ function displayImageDimensions (file){
         var width = img.width;
         var height = img.height;
         if (width != 512 || height != 512){
-            alert('Image dimensions should be 512*512')
-            return;
+            alert('Image dimensions should be 512*512');
         }
-        pixelCircle(img)
+        pixelCircle(img);
     }
 }
 
@@ -47,6 +46,8 @@ function pixelCircle(img){
     var centerX = img.width / 2;
     var centerY = img.height / 2;
 
+    var countNTpixOut = 0
+
     for (let i = 0; i<data.length; i+=4){
 
         var nonTrasparentpixel = data[i+3] !== 0;
@@ -56,11 +57,14 @@ function pixelCircle(img){
         var distanceToCenter = Math.sqrt(Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2));
 
         if (nonTrasparentpixel && distanceToCenter > circleRadius){
-            alert("Non transparent pixels outside a " + circleRadius + " pixels radius Circle")
-            document.getElementById("displayedAvatar").src = "";
-            return; 
-            // Add a user input to let him decide if he wants us to not use the pixel ? => make it transparent.
+            countNTpixOut += 1;
         }
+    }
+
+    var ntPixOutpercentage = (countNTpixOut / (data.length / 4)) * 100;
+    ntPixOutpercentage = ntPixOutpercentage.toFixed(2);
+    if (countNTpixOut > 0){
+        alert("You have " + ntPixOutpercentage + "% of non transparent pixel out of a " + circleRadius + " radius circle.");
     }
     
     colorMoodDetection();
@@ -99,12 +103,10 @@ function colorMoodDetection(){
     averageSaturation = totalSaturation / (data.length/4);
 
     if (averageBrightness < 0.05) {
-        alert("Your image is too sad for a badge ... Try something more colorful !");
-        document.getElementById("displayedAvatar").src = "";
-        return;
+        alert("Your image is too sad for an avatar ... Try something more bright !");
     }
 
-    displayAvatar()
+    displayAvatar();
 }
 
 function displayAvatar(){
@@ -127,7 +129,7 @@ function displayAvatar(){
             ctx.closePath();
             ctx.clip();
 
-            ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, circleRadius * 2, circleRadius * 2);
+            ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, 512, 512);
 
             document.getElementById("displayedAvatar").src = canvas.toDataURL();
         }
