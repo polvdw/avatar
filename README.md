@@ -20,9 +20,9 @@ That's it, you will see if some alerts are triggered and have your own badge! ðŸ
 
 The html is basic with one image balise for the original image you upload and one for the final badge created.
 
-#### JavaScript
+### JavaScript
 
-When the user choose an input, the js function testImage() starts.
+When the user chooses an input, the js function testImage() starts.
 
 - **testImage()** <br>
 Check if the user uploaded some files and store the first one.
