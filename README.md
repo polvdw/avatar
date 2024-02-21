@@ -18,10 +18,29 @@ That's it, you will see if some alerts are triggered and have your own badge! ðŸ
 
 ### HTML
 
-The html is basic with one balise for the original image you upload and one for the final badge created. I took some dynamic colors and font as it is a gaming project. The javascript is called by : <script src="function.js"></script>
+The html is basic with one balise for the original image you upload and one for the final badge created. I took some dynamic colors and font as it is a gaming project.
 
 #### JavaScript
 
+When the user choosed an input, the js function testImage() starts.
+
+- **testImage()** <br>
+Check if we have the input has enough information to display and use it.
+
+- **displayImage()** <br>
+Display the image so that the user sees it before possible alerts.
+
+- **checkImageDimensions()** <br>
+Check the width and height of the input png. If it is not 512*512, an alert is triggered and displayed on the UI. None alert triggered will stop the processus of badge creation as the instructions require. In my opinion, in a real word case, it would be better to stop the process and make the user change his input in order to have his badge created.
+
+- **checkNtpCircle()** <br>
+Check the % of nontransparent pixels out of the desired circle using canvas and euclidian distance. An alert is displayed if some pixels are out of bound with their %.
+
+- **detectColorMood()**
+After various tests, I chose to create a decision rule on the brightness and intensity of the images. It seems to work well on training and unseen image.<br>
+If the average intensity > 100 or the average brightness < 0.5 => an alert is displayed to inform the user that his image is probably a bit too sad for a badge in our game. <br>
+I didn't use saturation as I didn't find any linear separator with this attribute. <br>
+I computed these metrics and the average using only the nontransparent pixel.
 
 
 -------------------------------------------------
@@ -35,6 +54,7 @@ Size = 512x512
 The only nontransparent pixels are within a circle
 The colors of the badge give a "happy" feeling
 You can also create a parallel function that converts the given image (of any format) into the specified object.
+
 
 ##### HSL
 //http://voc500.be/textes/coulumsat.asp#:~:text=Par%20exemple%2C%20la%20luminosit%C3%A9%20du,255%2F255%20%3D%20100%20%25
