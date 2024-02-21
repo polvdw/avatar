@@ -111,7 +111,7 @@ function detectColorMood(){
     const averageIntensity = totalIntensity / countNtPix;
 
     if (averageIntensity < 100 || averageBrightness < 0.5) {
-        alert("Your image is too sad for an avatar ... Try something more bright !");
+        alert("Your image is too sad for an avatar ... Try something brighter !");
     }
     // console.log("average Brightness = " + averageBrightness);
     // console.log("average Saturation = " + averageSaturation);
