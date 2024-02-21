@@ -18,7 +18,7 @@ That's it, you will see if some alerts are triggered and have your own badge! ðŸ
 
 ### HTML
 
-The html is basic with one balise for the original image you upload and one for the final badge created. I took some dynamic colors and font as it is a gaming project.
+The html is basic with one image balise for the original image you upload and one for the final badge created.
 
 #### JavaScript
 
