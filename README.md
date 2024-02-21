@@ -12,7 +12,7 @@ To run this badge creator code, you need to follow a few simple and quick steps:
 
 That's it, you will see if some alerts are triggered and have your own badge! 🙌
 
--------------------------------------------------
+***************
 
 # Code Explanations
 
@@ -28,7 +28,7 @@ When the user choosed an input, the js function testImage() starts.
 Check if we have the input has enough information to display and use it.
 
 - **displayImage()** <br>
-Display the image so that the user sees it before possible alerts.
+Display the original image.
 
 - **checkImageDimensions()** <br>
 Check the width and height of the input png. If it is not 512*512, an alert is triggered and displayed on the UI. None alert triggered will stop the processus of badge creation as the instructions require. In my opinion, in a real word case, it would be better to stop the process and make the user change his input in order to have his badge created.
@@ -36,14 +36,16 @@ Check the width and height of the input png. If it is not 512*512, an alert is t
 - **checkNtpCircle()** <br>
 Check the % of nontransparent pixels out of the desired circle using canvas and euclidian distance. An alert is displayed if some pixels are out of bound with their %.
 
-- **detectColorMood()**
+- **detectColorMood()** <br>
 After various tests, I chose to create a decision rule on the brightness and intensity of the images. It seems to work well on training and unseen image.<br>
 If the average intensity > 100 or the average brightness < 0.5 => an alert is displayed to inform the user that his image is probably a bit too sad for a badge in our game. <br>
 I didn't use saturation as I didn't find any linear separator with this attribute. <br>
 I computed these metrics and the average using only the nontransparent pixel.
 
+- **displayAvatar()** <br>
+Using canvas, a circular avatar is created with a brown borde and displayed next to the input image.
 
--------------------------------------------------
+***************
 
 ### Instructions received by email
 
@@ -54,9 +56,3 @@ Size = 512x512
 The only nontransparent pixels are within a circle
 The colors of the badge give a "happy" feeling
 You can also create a parallel function that converts the given image (of any format) into the specified object.
-
-
-##### HSL
-//http://voc500.be/textes/coulumsat.asp#:~:text=Par%20exemple%2C%20la%20luminosit%C3%A9%20du,255%2F255%20%3D%20100%20%25
-Hue représente la teinte dominante ou la couleur proprement dite. Changer la teinte d'une couleur rouge à 60°, elle deviendra jaune. Saturation mesure l'intensité de la couleur : une couleur rouge à 50% de saturation serait moins vive que la même couleur à 100% de saturation. Brightness indique la luminosité ou l'intensité lumineuse de la couleur - quantité de lumière dans la couleur. une couleur bleue avec une luminosité de 80% serait plus claire qu'une couleur bleue avec une luminosité de 30%.
-
