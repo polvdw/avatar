@@ -8,13 +8,20 @@ To run this badge creator code, you need to follow a few simple and quick steps:
 
 2. Open the html on your browser (I worked on Google Chrome).
 
-3. Upload the image you want to transform in a badge by clicking on "choisir un ficher" under "Create your Badge".
+3. Upload the png you want to transform in a badge by clicking on "choisir un ficher" under "Create your Badge".
 
 That's it, you will see if some alerts are triggered and have your own badge! 🙌
 
 -------------------------------------------------
 
 # Code Explanations
+
+### HTML
+
+The html is basic with one balise for the original image you upload and one for the final badge created. I took some dynamic colors and font as it is a gaming project. The javascript is called by : <script src="function.js"></script>
+
+#### JavaScript
+
 
 
 -------------------------------------------------
