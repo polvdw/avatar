@@ -143,6 +143,12 @@ function displayAvatar(){
 
             ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, circleRadius * 2, circleRadius * 2);
 
+            ctx.strokeStyle = 'rgb(86,61,45)';
+            ctx.lineWidth = 20;
+            
+            // Dessiner le contour du cercle
+            ctx.stroke();
+
             document.getElementById("displayedAvatar").src = canvas.toDataURL();
         };
     };
