@@ -22,7 +22,7 @@ The html is basic with one image balise for the original image you upload and on
 
 ### JavaScript
 
-When the user chooses an input, the js function testImage() starts.
+When the user chooses an input, the js function testImage() starts running.
 
 - **testImage()** <br>
 Check if the user uploaded some files and store the first one.
