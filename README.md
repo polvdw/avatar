@@ -4,7 +4,7 @@ Hello and welcome to the Badge Creator tutorial 🎮
 
 To run this badge creator code, you need to follow a few simple and quick steps:
 
-1. Download the index.html, function.js files and put them in the **same folder**. Download the pngs in png_examples (you can also use personal ones). 
+1. Download the index.html and function.js files and put them in the **same folder**. Download the pngs in png_examples (you can also use personal ones). 
 
 2. Open the html on your browser (I worked on Google Chrome).
 
