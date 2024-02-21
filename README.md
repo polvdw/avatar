@@ -12,7 +12,7 @@ To run this badge creator code, you need to follow a few simple and quick steps:
 
 That's it, you will see if some alerts are triggered and have your own badge! 🙌
 
--------------------------------------------------
+***************
 
 # Code Explanations
 
@@ -28,7 +28,7 @@ When the user choosed an input, the js function testImage() starts.
 Check if we have the input has enough information to display and use it.
 
 - **displayImage()** <br>
-Display the image so that the user sees it before possible alerts.
+Display the original image.
 
 - **checkImageDimensions()** <br>
 Check the width and height of the input png. If it is not 512*512, an alert is triggered and displayed on the UI. None alert triggered will stop the processus of badge creation as the instructions require. In my opinion, in a real word case, it would be better to stop the process and make the user change his input in order to have his badge created.
@@ -45,7 +45,7 @@ I computed these metrics and the average using only the nontransparent pixel.
 - **displayAvatar()** <br>
 Using canvas, a circular avatar is created with a brown borde and displayed next to the input image.
 
--------------------------------------------------
+***************
 
 ### Instructions received by email
 
