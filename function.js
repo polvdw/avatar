@@ -1,5 +1,5 @@
 let file, data;
-const circleRadius = 256; // threshold chosen arbitrary
+const circleRadius = 256; // threshold chosen as the half of 512 px.
 
 
 function testImage(){
@@ -58,7 +58,6 @@ function checkNtpCircle(img){
     }
 
     const ntpOutPercent = ((countNtpOut / (data.length / 4)) * 100).toFixed(2);
-    // ntpOutPercent = ntpOutPercent.toFixed(2);
     if (countNtpOut > 0){
         alert("You have " + ntpOutPercent + "% of non transparent pixel out of the limited circle for the avatar.");
     }
@@ -70,7 +69,6 @@ function checkNtpCircle(img){
 function detectColorMood(){
 
     let totalBrightness = 0;
-    let totalSaturation = 0;
     let totalIntensity = 0;
     let countNtPix = 0;
 
@@ -78,7 +76,6 @@ function detectColorMood(){
 
         const transparency = data[i+3];
 
-        // Convert RGB to HSL
         if(transparency !== 0){
 
             const red = data[i];
@@ -87,18 +84,12 @@ function detectColorMood(){
 
             const max = Math.max(red, green, blue);
             const min = Math.min(red, green, blue);
-            const lightness = max / 255; //http://voc500.be/textes/coulumsat.asp#:~:text=Par%20exemple%2C%20la%20luminosit%C3%A9%20du,255%2F255%20%3D%20100%20%25.
+            const lightness = max / 255;
 
-            // Saturation
-            let saturation = 0;
-            if (lightness > 0 && lightness < 1){
-            saturation = (max - min) / max;
-            }
 
             const intensity = (red + green + blue) / 3;
 
             totalBrightness += lightness;
-            totalSaturation += saturation;
             totalIntensity += intensity;
             countNtPix += 1;
 
@@ -107,16 +98,11 @@ function detectColorMood(){
     }
 
     const averageBrightness = totalBrightness / countNtPix;
-    const averageSaturation = totalSaturation / countNtPix;
     const averageIntensity = totalIntensity / countNtPix;
 
     if (averageIntensity < 100 || averageBrightness < 0.5) {
         alert("Your image is too sad for an avatar ... Try something brighter !");
     }
-    // console.log("average Brightness = " + averageBrightness);
-    // console.log("average Saturation = " + averageSaturation);
-    // console.log("Average intensity = " + averageIntensity);
-    // console.log("pix nt = " + countNtPix);
 
     displayAvatar();
 }
@@ -145,8 +131,6 @@ function displayAvatar(){
 
             ctx.strokeStyle = 'rgb(86,61,45)';
             ctx.lineWidth = 20;
-            
-            // Dessiner le contour du cercle
             ctx.stroke();
 
             document.getElementById("displayedAvatar").src = canvas.toDataURL();
